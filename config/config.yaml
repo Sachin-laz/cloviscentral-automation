@@ -1,0 +1,9 @@
+url: "https://qa-vm.cloviscentral.com"
+
+username: "sachin.r@e-consystems.com"
+
+password: "Sxr@0210"
+
+browser: "chromium"
+
+headless: false
