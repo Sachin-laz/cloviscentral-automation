@@ -2,7 +2,8 @@ from pages.login_page import LoginPage
 from utils.config_reader import ConfigReader
 from pages.systems_page import SystemsPage
 
-def test_open_systems(page):
+
+def test_verify_system_tabs(page):
 
     config = ConfigReader.read()
 
@@ -17,7 +18,9 @@ def test_open_systems(page):
     print("URL:", page.url)
     print("Title:", page.title())
 
-
     systems = SystemsPage(page)
 
     assert systems.open_systems()
+
+    assert systems.verify_system_tabs(), \
+        "Pending, Active and Inactive tabs are not displayed."

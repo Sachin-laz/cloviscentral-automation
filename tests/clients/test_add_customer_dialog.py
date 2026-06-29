@@ -1,8 +1,9 @@
 from pages.login_page import LoginPage
-from utils.config_reader import ConfigReader
 from pages.clients_page import ClientsPage
+from utils.config_reader import ConfigReader
 
-def test_dashboard_customer_count(page):
+
+def test_add_customer_dialog(page):
 
     config = ConfigReader.read()
 
@@ -21,6 +22,10 @@ def test_dashboard_customer_count(page):
 
     clients = ClientsPage(page)
 
-    assert clients.open()
+    clients.open()
 
-    
+    clients.click_add_customer()
+
+    assert clients.is_add_customer_dialog_open()
+
+    clients.click_cancel()

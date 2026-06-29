@@ -29,18 +29,13 @@ class LoginPage(BasePage):
         ).wait_for(state="visible", timeout=15000)
 
         return True
+    
     def invalid_login_message_visible(self):
-
-        self.page.wait_for_timeout(3000)
-
-        print(
-            "Toast Count:",
-            self.page.locator(".MuiAlert-message").count()
+        locator = self.page.locator(
+            LoginLocators.ERROR_MESSAGE
         )
-
-        return self.page.locator(
-            ".MuiAlert-message"
-        ).is_visible()
+        locator.wait_for(state="visible")
+        return locator.is_visible()
 
     def username_validation_visible(self):
 

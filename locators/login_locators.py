@@ -8,7 +8,7 @@ class LoginLocators:
 
     DASHBOARD_HEADER = "h4:has-text('Dashboard')"
 
-    ERROR_MESSAGE = "div.MuiAlert-message"
+    ERROR_MESSAGE = "//p[text()='Invalid Email or password']"
 
     USERNAME_REQUIRED = "#login-email-helper-text"
 

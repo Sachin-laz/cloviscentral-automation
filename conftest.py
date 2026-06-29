@@ -1,5 +1,4 @@
 import pytest
-
 from playwright.sync_api import sync_playwright
 
 from utils.config_reader import ConfigReader
@@ -13,7 +12,8 @@ def browser():
     with sync_playwright() as p:
 
         browser = p.chromium.launch(
-            headless=config["headless"]
+            headless=config["headless"],
+            args=["--start-maximized"]
         )
 
         yield browser
@@ -24,10 +24,14 @@ def browser():
 @pytest.fixture
 def page(browser):
 
-    page = browser.new_page()
+    context = browser.new_context(
+        no_viewport=True
+    )
+
+    page = context.new_page()
 
     page.set_default_timeout(60000)
 
     yield page
 
-    page.close()
+    context.close()
